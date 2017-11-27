@@ -102,6 +102,16 @@ const ViewModel = () => {
 		});
 	};
 
+  self.openInfoWindow = (place) => {
+		place.marker.setAnimation(google.maps.Animation.BOUNCE);
+		setTimeout(function() {place.marker.setAnimation(null);}, 3000);
+    let infoContent = `
+      <p>${place.name()}</p>
+      <p>${place.formatted_address()}</p>`;
+    place.infoWindow.setContent(infoContent);
+		place.infoWindow.open(map, place.marker);
+	};
+
   self.createMarkersForPlaces(initialPlaces);
 };
 

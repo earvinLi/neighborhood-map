@@ -31,6 +31,7 @@ const initialPlaces = [
 const ViewModel = () => {
   const self = this;
 	self.placesToSearch = ko.observable('');
+  self.placesList = ko.observableArray();
 
   let markers = [];
   let infoWindow = new google.maps.InfoWindow();
@@ -87,6 +88,9 @@ const ViewModel = () => {
 				alert('Sorry no place found! Please change key word(s) and search again.');
 			}
 			self.createMarkersForPlaces(places);
+      places.forEach(function(place) {
+				self.placesList.push(new Place(place));
+			});
 		});
 	};
 

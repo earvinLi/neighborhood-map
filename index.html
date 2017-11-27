@@ -15,9 +15,12 @@
 			</header>
 
       <div id="controlPanel" class="row">
-        <div class="input-group">
+        <div class="input-group col-md-6">
           <input class="form-control" type="text" placeholder="What do you want to find?" data-bind="textInput: placesToSearch">
           <span class="input-group-btn"><button class="btn btn-secondary" type="button" data-bind="click: textSearch">Go!</button></span>
+        </div>
+        <div class="input-group col-md-6">
+          <input class="form-control" type="text" placeholder="Filter the results!">
         </div>
       </div>
       <div id="resultPanel" class="row">

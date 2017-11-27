@@ -35,6 +35,14 @@ const ViewModel = () => {
 
   self.createMarkersForPlaces = (places) => {
     let bounds = new google.maps.LatLngBounds();
+    function openInfoWindow() {
+			let place = places[this.id];
+      let infoContent = `
+				<p>${place.name}</p>
+				<p>${place.formatted_address}</p>`;
+      place.infoWindow.setContent(infoContent);
+			place.infoWindow.open(map, this);
+		}
 		for (let i = 0; i < places.length; i++) {
 			let place = places[i];
 			let marker = new google.maps.Marker({

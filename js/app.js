@@ -6,3 +6,6 @@ initMap = () => {
 		zoom: 12
 	});
 };
+handleError = () => {
+	alert(`Your map can't be loaded correctly. Please check the console for technical details and solutions.`);
+};

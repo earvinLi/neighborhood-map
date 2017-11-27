@@ -137,6 +137,7 @@ const ViewModel = () => {
 				<p>${placeAddress}</p>`;
       let wikiPartBasic = response[2][0] ? `<p>${response[2][0]}</p>` : '';
       let wikiPartSupplementary = response[1][0] ? `<p>Learn more about <a href="https://en.wikipedia.org/wiki/${response[1][0]}" target="_blank">${response[1][0]}</a> on Wikipedia.</p>` : `Sorry no Wiki here. Maybe you can change keywords (eg. 'St.' => 'Street') and search again on <a href="https://en.wikipedia.org" target="_blank">Wikipedia</a>.`;
+      infoContent += wikiPartBasic + wikiPartSupplementary;
       place.infoWindow.setContent(infoContent);
 		})
 		.fail(function(error) {

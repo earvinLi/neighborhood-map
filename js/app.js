@@ -132,7 +132,10 @@ const ViewModel = () => {
 			jsonp: 'callback'
 		})
 		.done(function(response) {
-
+      let infoContent = `
+				<p>${placeName}</p>
+				<p>${placeAddress}</p>`;
+      place.infoWindow.setContent(infoContent);
 		})
 		.fail(function(error) {
 			alert(Error(error));

@@ -146,6 +146,9 @@ const ViewModel = () => {
 	};
 
   self.createMarkersForPlaces(initialPlaces);
+  initialPlaces.forEach(function(place) {
+		self.placesList.push(new Place(place));
+	});
 };
 
 let map;

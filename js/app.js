@@ -33,6 +33,7 @@ const ViewModel = () => {
   let markers = [];
 
   self.createMarkersForPlaces = (places) => {
+    let bounds = new google.maps.LatLngBounds();
 		for (let i = 0; i < places.length; i++) {
 			let place = places[i];
 			let marker = new google.maps.Marker({
@@ -44,7 +45,13 @@ const ViewModel = () => {
 			});
 			place.marker = marker;
 			markers.push(marker);
+      if (place.geometry.viewport) {
+				bounds.union(place.geometry.viewport);
+			} else {
+				bounds.extend(place.geometry.location);
+			}
 		}
+    map.fitBounds(bounds);
 	};
 
 };

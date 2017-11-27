@@ -37,6 +37,9 @@ const ViewModel = () => {
     let bounds = new google.maps.LatLngBounds();
     function openInfoWindow() {
 			let place = places[this.id];
+      let marker = this;
+			this.setAnimation(google.maps.Animation.BOUNCE);
+			setTimeout(function() {marker.setAnimation(null);}, 2750);
       let infoContent = `
 				<p>${place.name}</p>
 				<p>${place.formatted_address}</p>`;
@@ -65,6 +68,7 @@ const ViewModel = () => {
     map.fitBounds(bounds);
 	};
 
+  self.createMarkersForPlaces(initialPlaces);
 };
 
 let map;

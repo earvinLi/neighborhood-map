@@ -40,6 +40,9 @@ const ViewModel = () => {
 	self.placesToSearch = ko.observable('');
   self.placesList = ko.observableArray();
   self.placesToFilter = ko.observable('');
+  self.filteredPlacesList = ko.computed(function() {
+    
+	});
 
   let markers = [];
   let infoWindow = new google.maps.InfoWindow();

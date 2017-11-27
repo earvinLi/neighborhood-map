@@ -29,6 +29,8 @@ const initialPlaces = [
 ];
 
 const ViewModel = () => {
+  const self = this;
+	self.placesToSearch = ko.observable('');
 
   let markers = [];
   let infoWindow = new google.maps.InfoWindow();

@@ -28,6 +28,13 @@ const initialPlaces = [
 	}
 ];
 
+const Place = (data) => {
+	this.name = ko.observable(data.name);
+	this.formatted_address = ko.observable(data.formatted_address);
+	this.marker = data.marker;
+	this.infoWindow = data.infoWindow;
+};
+
 const ViewModel = () => {
   const self = this;
 	self.placesToSearch = ko.observable('');

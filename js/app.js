@@ -76,10 +76,7 @@ const ViewModel = () => {
       let marker = this;
 			this.setAnimation(google.maps.Animation.BOUNCE);
 			setTimeout(function() {marker.setAnimation(null);}, 2750);
-      let infoContent = `
-				<p>${place.name}</p>
-				<p>${place.formatted_address}</p>`;
-      place.infoWindow.setContent(infoContent);
+      self.getWiki(place, place.name, place.formatted_address);
 			place.infoWindow.open(map, this);
 		}
 		for (let i = 0; i < places.length; i++) {
@@ -124,10 +121,7 @@ const ViewModel = () => {
   self.openInfoWindow = (place) => {
 		place.marker.setAnimation(google.maps.Animation.BOUNCE);
 		setTimeout(function() {place.marker.setAnimation(null);}, 3000);
-    let infoContent = `
-      <p>${place.name()}</p>
-      <p>${place.formatted_address()}</p>`;
-    place.infoWindow.setContent(infoContent);
+    self.getWiki(place, place.name(), place.formatted_address());
 		place.infoWindow.open(map, place.marker);
 	};
 
@@ -138,7 +132,7 @@ const ViewModel = () => {
 			jsonp: 'callback'
 		})
 		.done(function(response) {
-      
+
 		})
 		.fail(function(error) {
 			alert(Error(error));

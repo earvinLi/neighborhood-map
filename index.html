@@ -22,7 +22,9 @@
       </div>
       <div id="resultPanel" class="row">
         <div class="col-4">
-          <ul class="list-group"></ul>
+          <ul class="list-group" data-bind="foreach: placesList">
+            <li class="list-group-item" data-bind="text: name"></li>
+          </ul>
         </div>
         <div id="map" class="col-8"></div>
       </div>

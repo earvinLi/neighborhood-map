@@ -44,6 +44,10 @@ const ViewModel = () => {
 		let filter = self.placesToFilter().toLowerCase();
 		if (!filter) {
 			return self.placesList();
+		} else {
+			return ko.utils.arrayFilter(self.placesList(), function(place) {
+        
+			});
 		}
 	});
 

@@ -30,6 +30,23 @@ const initialPlaces = [
 
 const ViewModel = () => {
 
+  let markers = [];
+
+  self.createMarkersForPlaces = (places) => {
+		for (let i = 0; i < places.length; i++) {
+			let place = places[i];
+			let marker = new google.maps.Marker({
+				title: place.name,
+				position: place.geometry.location,
+				map: map,
+				visible: true,
+				id: i
+			});
+			place.marker = marker;
+			markers.push(marker);
+		}
+	};
+
 };
 
 let map;

@@ -35,8 +35,15 @@ const ViewModel = () => {
   let markers = [];
   let infoWindow = new google.maps.InfoWindow();
 
+  self.hideMarkers = (markers) => {
+		markers.forEach(function(marker) {
+			marker.setMap(null);
+		});
+	};
+
   self.createMarkersForPlaces = (places) => {
     let bounds = new google.maps.LatLngBounds();
+    self.hideMarkers(markers);
     function openInfoWindow() {
 			let place = places[this.id];
       let marker = this;

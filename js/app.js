@@ -42,11 +42,19 @@ const ViewModel = () => {
   self.placesToFilter = ko.observable('');
   self.filteredPlacesList = ko.computed(function() {
 		let filter = self.placesToFilter().toLowerCase();
-		if (!filter) {
+    if (!filter) {
+			self.placesList().forEach(function(place) {
+				place.marker.setVisible(true);
+			});
 			return self.placesList();
 		} else {
 			return ko.utils.arrayFilter(self.placesList(), function(place) {
-				return place.name().toLowerCase().indexOf(filter) != -1;
+				if (place.name().toLowerCase().indexOf(filter) != -1) {
+					place.marker.setVisible(true);
+					return place;
+				} else {
+					place.marker.setVisible(false);
+				}
 			});
 		}
 	});

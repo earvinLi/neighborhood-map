@@ -70,6 +70,9 @@ const ViewModel = () => {
     map.fitBounds(bounds);
 	};
 
+	self.textSearch = () => {
+	};
+
   self.createMarkersForPlaces(initialPlaces);
 };
 

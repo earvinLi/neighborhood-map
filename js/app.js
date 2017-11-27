@@ -131,6 +131,20 @@ const ViewModel = () => {
 		place.infoWindow.open(map, place.marker);
 	};
 
+  self.getWiki = (place, placeName, placeAddress) => {
+		$.ajax({
+			url: `https://en.wikipedia.org/w/api.php?action=opensearch&search=${placeName}&format=json&callback=wiwikiCallback`,
+			dataType: 'jsonp',
+			jsonp: 'callback'
+		})
+		.done(function(response) {
+      
+		})
+		.fail(function(error) {
+			alert(Error(error));
+		});
+	};
+
   self.createMarkersForPlaces(initialPlaces);
 };
 

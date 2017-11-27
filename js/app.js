@@ -70,7 +70,17 @@ const ViewModel = () => {
     map.fitBounds(bounds);
 	};
 
-	self.textSearch = () => {
+  const placesService = new google.maps.places.PlacesService(map);
+  self.textSearch = () => {
+    placesService.textSearch({
+			query: self.placesToSearch(),
+			bounds: map.getBounds()
+		}, function(places) {
+			if (places.length === 0) {
+				alert('Sorry no place found! Please change key word(s) and search again.');
+			}
+			self.createMarkersForPlaces(places);
+		});
 	};
 
   self.createMarkersForPlaces(initialPlaces);

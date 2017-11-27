@@ -41,7 +41,10 @@ const ViewModel = () => {
   self.placesList = ko.observableArray();
   self.placesToFilter = ko.observable('');
   self.filteredPlacesList = ko.computed(function() {
-    
+		let filter = self.placesToFilter().toLowerCase();
+		if (!filter) {
+			return self.placesList();
+		}
 	});
 
   let markers = [];

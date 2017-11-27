@@ -46,7 +46,7 @@ const ViewModel = () => {
 			return self.placesList();
 		} else {
 			return ko.utils.arrayFilter(self.placesList(), function(place) {
-        
+				return place.name().toLowerCase().indexOf(filter) != -1;
 			});
 		}
 	});

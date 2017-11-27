@@ -94,6 +94,7 @@ const ViewModel = () => {
 			if (places.length === 0) {
 				alert('Sorry no place found! Please change key word(s) and search again.');
 			}
+      self.placesList([]);
 			self.createMarkersForPlaces(places);
       places.forEach(function(place) {
 				self.placesList.push(new Place(place));

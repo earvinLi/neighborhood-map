@@ -135,6 +135,7 @@ const ViewModel = () => {
       let infoContent = `
 				<p>${placeName}</p>
 				<p>${placeAddress}</p>`;
+      let wikiPartBasic = response[2][0] ? `<p>${response[2][0]}</p>` : '';
       place.infoWindow.setContent(infoContent);
 		})
 		.fail(function(error) {

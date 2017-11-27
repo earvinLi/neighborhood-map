@@ -1,3 +1,5 @@
+// Great great thanks to Sarah's help here https://discussions.udacity.com/t/how-to-implement-knockout-into-the-project/181122/5 !!!
+
 let map;
 
 const initialPlaces = [

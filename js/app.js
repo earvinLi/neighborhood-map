@@ -28,6 +28,7 @@ const initialPlaces = [
 	}
 ];
 
+// store every place's data for easy manipulations
 const Place = (data) => {
 	this.name = ko.observable(data.name);
 	this.formatted_address = ko.observable(data.formatted_address);
@@ -40,6 +41,7 @@ const ViewModel = () => {
 	self.placesToSearch = ko.observable('');
   self.placesList = ko.observableArray();
   self.placesToFilter = ko.observable('');
+  // filter and update the results
   self.filteredPlacesList = ko.computed(function() {
 		let filter = self.placesToFilter().toLowerCase();
     if (!filter) {
@@ -59,6 +61,7 @@ const ViewModel = () => {
 		}
 	});
 
+  // create and manipulate markers and info windows
   let markers = [];
   let infoWindow = new google.maps.InfoWindow();
 
@@ -71,6 +74,7 @@ const ViewModel = () => {
   self.createMarkersForPlaces = (places) => {
     let bounds = new google.maps.LatLngBounds();
     self.hideMarkers(markers);
+    // click the marker to focus the marker and open the info window
     function openInfoWindow() {
 			let place = places[this.id];
       let marker = this;
@@ -101,6 +105,7 @@ const ViewModel = () => {
     map.fitBounds(bounds);
 	};
 
+  // use place service's text search to get the initial places list and create markers
   const placesService = new google.maps.places.PlacesService(map);
   self.textSearch = () => {
     placesService.textSearch({
@@ -118,6 +123,7 @@ const ViewModel = () => {
 		});
 	};
 
+  // click the list item to focus the marker and open the info window
   self.openInfoWindow = (place) => {
 		place.marker.setAnimation(google.maps.Animation.BOUNCE);
 		setTimeout(function() {place.marker.setAnimation(null);}, 3000);
@@ -145,11 +151,13 @@ const ViewModel = () => {
 		});
 	};
 
+  // set initial markers and list items
   self.createMarkersForPlaces(initialPlaces);
   initialPlaces.forEach(function(place) {
 		self.placesList.push(new Place(place));
 	});
 
+  // use geolocation to get user's location and center the map use the location
   if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			map.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
@@ -159,7 +167,7 @@ const ViewModel = () => {
 	} else {
 		alert(`Please allow your browser's geolocation function to run.`);
 	}
-  
+
 };
 
 let map;

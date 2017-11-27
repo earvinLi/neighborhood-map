@@ -31,6 +31,7 @@ const initialPlaces = [
 const ViewModel = () => {
 
   let markers = [];
+  let infoWindow = new google.maps.InfoWindow();
 
   self.createMarkersForPlaces = (places) => {
     let bounds = new google.maps.LatLngBounds();
@@ -45,6 +46,8 @@ const ViewModel = () => {
 			});
 			place.marker = marker;
 			markers.push(marker);
+      place.infoWindow = infoWindow;
+			marker.addListener('click', openInfoWindow);
       if (place.geometry.viewport) {
 				bounds.union(place.geometry.viewport);
 			} else {

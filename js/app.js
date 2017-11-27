@@ -149,6 +149,17 @@ const ViewModel = () => {
   initialPlaces.forEach(function(place) {
 		self.placesList.push(new Place(place));
 	});
+
+  if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+			map.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
+		}, function(error) {
+			alert(Error(error));
+		});
+	} else {
+		alert(`Please allow your browser's geolocation function to run.`);
+	}
+  
 };
 
 let map;
